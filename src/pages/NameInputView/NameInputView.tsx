@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSettings } from '../../context/SettingsContext'
 import { saveResult } from '../../firebase/firebase'
+import LottieAnimation from '../../components/LottieAnimation/LottieAnimation'
+import endNorAnim from '../../assets/end_nor_game_1t.json'
+import newRecordAnim from '../../assets/new record_1t.json'
 import styles from './NameInputView.module.css'
 
 interface Props {
@@ -16,6 +19,14 @@ export default function NameInputView({ score, correctCount, onPlayAgain }: Prop
   const [name, setName] = useState('')
   const [saved, setSaved] = useState(false)
   const [saving, setSaving] = useState(false)
+  const [isNewRecord] = useState(() => {
+    const best = Number(localStorage.getItem('bestScore') ?? '0')
+    if (score > best) {
+      localStorage.setItem('bestScore', String(score))
+      return true
+    }
+    return false
+  })
 
   useEffect(() => {
     const stored = localStorage.getItem('playerName')
@@ -33,6 +44,11 @@ export default function NameInputView({ score, correctCount, onPlayAgain }: Prop
 
   return (
     <div className={styles.container}>
+      <LottieAnimation
+        animationData={isNewRecord ? newRecordAnim : endNorAnim}
+        loop={false}
+        className={styles.animation}
+      />
       <div className={styles.card}>
         <h2 className={styles.title}>Game Over</h2>
 

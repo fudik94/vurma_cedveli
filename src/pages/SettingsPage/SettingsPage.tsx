@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { useSettings } from '../../context/SettingsContext'
+import LottieAnimation from '../../components/LottieAnimation/LottieAnimation'
 import type { Language, Theme } from '../../types'
+import settAnim from '../../assets/sett_many_t.json'
 import styles from './SettingsPage.module.css'
 
 export default function SettingsPage() {
@@ -10,6 +12,8 @@ export default function SettingsPage() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{t.settings}</h1>
+
+      <LottieAnimation animationData={settAnim} loop={true} className={styles.animation} />
 
       <div className={styles.card}>
         <div className={styles.setting}>

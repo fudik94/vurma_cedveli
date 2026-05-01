@@ -13,6 +13,11 @@
   color: var(--primary);
 }
 
+.animation {
+  width: 160px;
+  height: 160px;
+}
+
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
