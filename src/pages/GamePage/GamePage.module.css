@@ -1,0 +1,48 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.difficultyLabel {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.startBtn {
+  font-size: 1.25rem;
+  padding: 1rem 3rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.navBtn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 2px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.navBtn:hover:not(:disabled) {
+  background: var(--border);
+  color: var(--text);
+}
