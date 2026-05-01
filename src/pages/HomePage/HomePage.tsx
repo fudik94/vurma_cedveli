@@ -10,7 +10,6 @@ export default function HomePage() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>vurma_cedveli</h1>
-      <p className={styles.subtitle}>×</p>
 
       <div className={styles.controls}>
         <select
