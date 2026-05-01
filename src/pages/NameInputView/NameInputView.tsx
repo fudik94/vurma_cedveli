@@ -19,11 +19,15 @@ export default function NameInputView({ score, correctCount, onPlayAgain }: Prop
   const [name, setName] = useState('')
   const [saved, setSaved] = useState(false)
   const [saving, setSaving] = useState(false)
+  const [saveable, setSaveable] = useState(false)
   const [isNewRecord] = useState(() => {
-    const best = Number(localStorage.getItem('bestScore') ?? '0')
-    if (score > best) {
+    const stored = localStorage.getItem('bestScore')
+    if (stored !== null && score > Number(stored)) {
       localStorage.setItem('bestScore', String(score))
       return true
+    }
+    if (stored === null) {
+      localStorage.setItem('bestScore', String(score))
     }
     return false
   })
@@ -31,6 +35,8 @@ export default function NameInputView({ score, correctCount, onPlayAgain }: Prop
   useEffect(() => {
     const stored = localStorage.getItem('playerName')
     if (stored) setName(stored)
+    const t = setTimeout(() => setSaveable(true), 600)
+    return () => clearTimeout(t)
   }, [])
 
   async function handleSave() {
@@ -73,7 +79,7 @@ export default function NameInputView({ score, correctCount, onPlayAgain }: Prop
               className={styles.input}
               onKeyDown={(e) => { if (e.key === 'Enter') void handleSave() }}
             />
-            <button onClick={() => void handleSave()} disabled={!name.trim() || saving}>
+            <button onClick={() => void handleSave()} disabled={!name.trim() || saving || !saveable}>
               {saving ? '...' : t.saveResults}
             </button>
           </div>
