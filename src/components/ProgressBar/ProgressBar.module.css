@@ -1,0 +1,27 @@
+.track {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 999px;
+  transition: width 1s linear, background 0.3s ease;
+}
+
+.low {
+  background: var(--error);
+}
+
+.time {
+  position: absolute;
+  right: 0;
+  top: 16px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,35 @@
+.button {
+  width: 100%;
+  padding: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--bg-secondary);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.idle {
+  /* default */
+}
+
+.correct {
+  background: var(--success) !important;
+  border-color: var(--success) !important;
+  color: white !important;
+  transform: scale(1.05);
+}
+
+.wrong {
+  background: var(--error) !important;
+  border-color: var(--error) !important;
+  color: white !important;
+}
