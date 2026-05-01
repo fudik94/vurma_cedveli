@@ -45,4 +45,7 @@ export interface Translations {
   loading: string
   player: string
   rank: string
+  timeUp: string
+  newRecordMsg: string
+  tryAgainMsg: string
 }

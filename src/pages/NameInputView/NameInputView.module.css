@@ -32,6 +32,19 @@
   font-weight: 700;
 }
 
+.recordMsg {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+}
+
+.tryMsg {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
 .stats {
   display: flex;
   gap: 2rem;

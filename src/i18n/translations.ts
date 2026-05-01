@@ -28,6 +28,9 @@ const en: Translations = {
   loading: 'Loading...',
   player: 'Player',
   rank: 'Rank',
+  timeUp: "Time's Up!",
+  newRecordMsg: 'New Record! Well done!',
+  tryAgainMsg: "Try again — maybe you'll set a record!",
 }
 
 const et: Translations = {
@@ -58,6 +61,9 @@ const et: Translations = {
   loading: 'Laadimine...',
   player: 'Mängija',
   rank: 'Koht',
+  timeUp: 'Aeg läbi!',
+  newRecordMsg: 'Uus rekord! Hästi tehtud!',
+  tryAgainMsg: 'Proovi uuesti — äkki püstitad rekordi!',
 }
 
 const ru: Translations = {
@@ -88,6 +94,9 @@ const ru: Translations = {
   loading: 'Загрузка...',
   player: 'Игрок',
   rank: 'Место',
+  timeUp: 'Время вышло!',
+  newRecordMsg: 'Новый рекорд! Молодец!',
+  tryAgainMsg: 'Попробуй ещё — может побьёшь рекорд!',
 }
 
 const az: Translations = {
@@ -118,6 +127,9 @@ const az: Translations = {
   loading: 'Yüklənir...',
   player: 'Oyunçu',
   rank: 'Yer',
+  timeUp: 'Vaxt bitdi!',
+  newRecordMsg: 'Yeni rekord! Əla!',
+  tryAgainMsg: 'Yenidən cəhd et — bəlkə rekord qırarsan!',
 }
 
 export const translations: Record<Language, Translations> = { en, et, ru, az }

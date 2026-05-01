@@ -56,7 +56,10 @@ export default function NameInputView({ score, correctCount, onPlayAgain }: Prop
         className={styles.animation}
       />
       <div className={styles.card}>
-        <h2 className={styles.title}>Game Over</h2>
+        <h2 className={styles.title}>{t.timeUp}</h2>
+        <p className={isNewRecord ? styles.recordMsg : styles.tryMsg}>
+          {isNewRecord ? t.newRecordMsg : t.tryAgainMsg}
+        </p>
 
         <div className={styles.stats}>
           <div className={styles.stat}>
