@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'
+import Lottie from 'lottie-react'
 import { useSettings } from '../../context/SettingsContext'
 import type { Language, Theme } from '../../types'
+import animationData from '../../assets/animation_main_dsip.json'
 import styles from './HomePage.module.css'
 
 export default function HomePage() {
@@ -10,6 +12,12 @@ export default function HomePage() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>vurma_cedveli</h1>
+
+      <Lottie
+        animationData={animationData}
+        loop={false}
+        className={styles.animation}
+      />
 
       <div className={styles.controls}>
         <select
