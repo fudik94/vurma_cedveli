@@ -4,7 +4,7 @@ import { translations } from '../i18n/translations'
 
 const DEFAULT_SETTINGS: Settings = {
   language: 'en',
-  theme: 'light',
+  theme: 'dark',
   difficulty: 5,
 }
 
