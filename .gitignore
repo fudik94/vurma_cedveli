@@ -1,0 +1,12 @@
+# Claude Code files — local only
+.claude/
+CLAUDE.md
+
+# Research and planning docs — local only
+docs/
+*.research.md
+*.plan.md
+node_modules/
+dist/
+.env
+.env.local
