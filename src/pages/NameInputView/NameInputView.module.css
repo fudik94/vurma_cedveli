@@ -95,3 +95,17 @@
   color: white;
   border-color: var(--primary);
 }
+
+.homeBtn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.homeBtn:hover {
+  color: var(--text);
+}

@@ -99,6 +99,9 @@ export default function NameInputView({ score, correctCount, onPlayAgain }: Prop
         <button className={styles.playAgain} onClick={onPlayAgain}>
           {t.startGame}
         </button>
+        <button className={styles.homeBtn} onClick={() => navigate('/')}>
+          {t.home}
+        </button>
       </div>
     </div>
   )

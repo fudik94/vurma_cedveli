@@ -1,7 +1,7 @@
 import type { Language, Translations } from '../types'
 
 const en: Translations = {
-  home: 'Home',
+  home: 'Main Menu',
   game: 'Game',
   results: 'Results',
   settings: 'Settings',
@@ -37,7 +37,7 @@ const en: Translations = {
 }
 
 const et: Translations = {
-  home: 'Avaleht',
+  home: 'Peamenüü',
   game: 'Mäng',
   results: 'Tulemused',
   settings: 'Sätted',
@@ -73,7 +73,7 @@ const et: Translations = {
 }
 
 const ru: Translations = {
-  home: 'Главная',
+  home: 'Главное меню',
   game: 'Игра',
   results: 'Результаты',
   settings: 'Настройки',
@@ -109,7 +109,7 @@ const ru: Translations = {
 }
 
 const az: Translations = {
-  home: 'Ana səhifə',
+  home: 'Əsas menyu',
   game: 'Oyun',
   results: 'Nəticələr',
   settings: 'Parametrlər',

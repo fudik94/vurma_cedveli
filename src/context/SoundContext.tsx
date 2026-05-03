@@ -4,6 +4,7 @@ import { Howl, Howler } from 'howler'
 import correctSfx from '../assets/sounds/correct_ans.wav'
 import wrongSfx from '../assets/sounds/wrong_ans.wav'
 import last10Sfx from '../assets/sounds/last_10 sec.wav'
+import countdownSfx from '../assets/sounds/321_go.wav'
 import mainMusic from '../assets/sounds/main_phone.mp3'
 import gameMusic from '../assets/sounds/during_game.mp3'
 import endMusic from '../assets/sounds/est_end game.mp3'
@@ -14,6 +15,7 @@ interface SoundContextValue {
   playCorrect: () => void
   playWrong: () => void
   playLast10: () => void
+  playCountdown: () => void
   startBgMusic: (track: BgTrack) => void
   muted: boolean
   toggleMute: () => void
@@ -27,6 +29,7 @@ export function SoundProvider({ children }: { children: ReactNode }) {
   const correctRef = useRef<Howl | null>(null)
   const wrongRef = useRef<Howl | null>(null)
   const last10Ref = useRef<Howl | null>(null)
+  const countdownRef = useRef<Howl | null>(null)
   const bgRef = useRef<Howl | null>(null)
   const currentTrackRef = useRef<BgTrack | null>(null)
 
@@ -34,10 +37,12 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     correctRef.current = new Howl({ src: [correctSfx], volume: 0.8 })
     wrongRef.current = new Howl({ src: [wrongSfx], volume: 0.8 })
     last10Ref.current = new Howl({ src: [last10Sfx], volume: 0.9 })
+    countdownRef.current = new Howl({ src: [countdownSfx], volume: 1.0 })
     return () => {
       correctRef.current?.unload()
       wrongRef.current?.unload()
       last10Ref.current?.unload()
+      countdownRef.current?.unload()
       bgRef.current?.unload()
     }
   }, [])
@@ -52,7 +57,7 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     bgRef.current?.stop()
     bgRef.current?.unload()
     const src = track === 'main' ? mainMusic : track === 'game' ? gameMusic : endMusic
-    bgRef.current = new Howl({ src: [src], loop: true, volume: 0.35 })
+    bgRef.current = new Howl({ src: [src], loop: track !== 'end', volume: 0.35 })
     bgRef.current.play()
     currentTrackRef.current = track
   }, [])
@@ -71,11 +76,16 @@ export function SoundProvider({ children }: { children: ReactNode }) {
     last10Ref.current?.play()
   }, [])
 
+  const playCountdown = useCallback(() => {
+    countdownRef.current?.stop()
+    countdownRef.current?.play()
+  }, [])
+
   const toggleMute = useCallback(() => setMuted(m => !m), [])
 
   const value = useMemo<SoundContextValue>(
-    () => ({ playCorrect, playWrong, playLast10, startBgMusic, muted, toggleMute }),
-    [playCorrect, playWrong, playLast10, startBgMusic, muted, toggleMute],
+    () => ({ playCorrect, playWrong, playLast10, playCountdown, startBgMusic, muted, toggleMute }),
+    [playCorrect, playWrong, playLast10, playCountdown, startBgMusic, muted, toggleMute],
   )
 
   return <SoundContext.Provider value={value}>{children}</SoundContext.Provider>
