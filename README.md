@@ -1,4 +1,4 @@
-# vurma_cedveli
+# 🧮 vurma_cedveli
 
 A multiplication table game built as an academic project for the **Veebirakenduste loomine** (Web Application Development) course at university.
 
@@ -38,20 +38,5 @@ The player is shown a multiplication task (e.g. `7 × 8 = ?`) and must pick the 
 | Audio | Howler.js |
 | Animations | lottie-web |
 
-## Getting Started
 
-```bash
-npm install
-npm run dev
-```
-
-Requires a `.env` file with Firebase credentials:
-
-```
-VITE_FIREBASE_API_KEY=...
-VITE_FIREBASE_AUTH_DOMAIN=...
-VITE_FIREBASE_PROJECT_ID=...
-VITE_FIREBASE_STORAGE_BUCKET=...
-VITE_FIREBASE_MESSAGING_SENDER_ID=...
-VITE_FIREBASE_APP_ID=...
-```
+Developed by Fuad - based in Estonia 🇪🇪
