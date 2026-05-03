@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSettings } from '../../context/SettingsContext'
+import { useSounds } from '../../context/SoundContext'
 import { saveResult } from '../../firebase/firebase'
 import LottieAnimation from '../../components/LottieAnimation/LottieAnimation'
 import endNorAnim from '../../assets/end_nor_game_1t.json'
@@ -16,6 +17,7 @@ interface Props {
 export default function NameInputView({ score, correctCount, onPlayAgain }: Props) {
   const navigate = useNavigate()
   const { t, difficulty } = useSettings()
+  const { startBgMusic } = useSounds()
   const [name, setName] = useState('')
   const [saved, setSaved] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -33,10 +35,14 @@ export default function NameInputView({ score, correctCount, onPlayAgain }: Prop
   })
 
   useEffect(() => {
+    startBgMusic('end')
+  }, [startBgMusic])
+
+  useEffect(() => {
     const stored = localStorage.getItem('playerName')
     if (stored) setName(stored)
-    const t = setTimeout(() => setSaveable(true), 600)
-    return () => clearTimeout(t)
+    const timer = setTimeout(() => setSaveable(true), 600)
+    return () => clearTimeout(timer)
   }, [])
 
   async function handleSave() {

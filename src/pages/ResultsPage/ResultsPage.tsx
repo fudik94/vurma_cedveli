@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSettings } from '../../context/SettingsContext'
+import { useSounds } from '../../context/SoundContext'
 import { getResults } from '../../firebase/firebase'
 import type { GameResult } from '../../types'
 import styles from './ResultsPage.module.css'
@@ -8,8 +9,13 @@ import styles from './ResultsPage.module.css'
 export default function ResultsPage() {
   const navigate = useNavigate()
   const { t } = useSettings()
+  const { startBgMusic } = useSounds()
   const [results, setResults] = useState<GameResult[]>([])
   const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    startBgMusic('main')
+  }, [startBgMusic])
 
   useEffect(() => {
     getResults()

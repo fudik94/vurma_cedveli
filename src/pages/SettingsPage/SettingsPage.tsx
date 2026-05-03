@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSettings } from '../../context/SettingsContext'
+import { useSounds } from '../../context/SoundContext'
 import LottieAnimation from '../../components/LottieAnimation/LottieAnimation'
 import type { Language, Theme } from '../../types'
 import settAnim from '../../assets/sett_many_t.json'
@@ -8,6 +10,11 @@ import styles from './SettingsPage.module.css'
 export default function SettingsPage() {
   const navigate = useNavigate()
   const { t, language, theme, difficulty, setLanguage, setTheme, setDifficulty } = useSettings()
+  const { startBgMusic, muted, toggleMute } = useSounds()
+
+  useEffect(() => {
+    startBgMusic('main')
+  }, [startBgMusic])
 
   return (
     <div className={styles.container}>
@@ -37,6 +44,14 @@ export default function SettingsPage() {
           >
             <option value="light">{t.light}</option>
             <option value="dark">{t.dark}</option>
+          </select>
+        </div>
+
+        <div className={styles.setting}>
+          <label className={styles.label}>{t.sound}</label>
+          <select value={muted ? 'off' : 'on'} onChange={() => toggleMute()}>
+            <option value="on">{t.soundOn}</option>
+            <option value="off">{t.soundOff}</option>
           </select>
         </div>
 

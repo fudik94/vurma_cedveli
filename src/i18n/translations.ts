@@ -31,6 +31,9 @@ const en: Translations = {
   timeUp: "Time's Up!",
   newRecordMsg: 'New Record! Well done!',
   tryAgainMsg: "Try again — maybe you'll set a record!",
+  sound: 'Sound',
+  soundOn: 'On',
+  soundOff: 'Off',
 }
 
 const et: Translations = {
@@ -64,6 +67,9 @@ const et: Translations = {
   timeUp: 'Aeg läbi!',
   newRecordMsg: 'Uus rekord! Hästi tehtud!',
   tryAgainMsg: 'Proovi uuesti — äkki püstitad rekordi!',
+  sound: 'Heli',
+  soundOn: 'Sees',
+  soundOff: 'Väljas',
 }
 
 const ru: Translations = {
@@ -97,6 +103,9 @@ const ru: Translations = {
   timeUp: 'Время вышло!',
   newRecordMsg: 'Новый рекорд! Молодец!',
   tryAgainMsg: 'Попробуй ещё — может побьёшь рекорд!',
+  sound: 'Звук',
+  soundOn: 'Вкл',
+  soundOff: 'Выкл',
 }
 
 const az: Translations = {
@@ -130,6 +139,9 @@ const az: Translations = {
   timeUp: 'Vaxt bitdi!',
   newRecordMsg: 'Yeni rekord! Əla!',
   tryAgainMsg: 'Yenidən cəhd et — bəlkə rekord qırarsan!',
+  sound: 'Səs',
+  soundOn: 'Açıq',
+  soundOff: 'Qapalı',
 }
 
 export const translations: Record<Language, Translations> = { en, et, ru, az }

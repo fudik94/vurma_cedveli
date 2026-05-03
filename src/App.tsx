@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { SettingsProvider } from './context/SettingsContext'
+import { SoundProvider } from './context/SoundContext'
 import HomePage from './pages/HomePage/HomePage'
 import SettingsPage from './pages/SettingsPage/SettingsPage'
 import ResultsPage from './pages/ResultsPage/ResultsPage'
@@ -8,6 +9,7 @@ import GamePage from './pages/GamePage/GamePage'
 export default function App() {
   return (
     <SettingsProvider>
+      <SoundProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -16,6 +18,7 @@ export default function App() {
           <Route path="/game" element={<GamePage />} />
         </Routes>
       </BrowserRouter>
+      </SoundProvider>
     </SettingsProvider>
   )
 }

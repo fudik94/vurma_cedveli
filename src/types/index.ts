@@ -48,4 +48,7 @@ export interface Translations {
   timeUp: string
   newRecordMsg: string
   tryAgainMsg: string
+  sound: string
+  soundOn: string
+  soundOff: string
 }

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useRef, useEffect } from 'react'
 import lottie from 'lottie-web'
 import { useSettings } from '../../context/SettingsContext'
+import { useSounds } from '../../context/SoundContext'
 import type { Language, Theme } from '../../types'
 import animationData from '../../assets/animation_main_dsip.json'
 import styles from './HomePage.module.css'
@@ -9,7 +10,12 @@ import styles from './HomePage.module.css'
 export default function HomePage() {
   const navigate = useNavigate()
   const { t, language, theme, setLanguage, setTheme } = useSettings()
+  const { startBgMusic } = useSounds()
   const animRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    startBgMusic('main')
+  }, [startBgMusic])
 
   useEffect(() => {
     if (!animRef.current) return

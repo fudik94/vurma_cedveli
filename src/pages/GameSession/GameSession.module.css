@@ -14,9 +14,25 @@
   padding-bottom: 1.5rem;
 }
 
+.scoreRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .score {
   font-size: 1.1rem;
   color: var(--text-secondary);
+}
+
+.muteBtn {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: 6px;
 }
 
 .question {

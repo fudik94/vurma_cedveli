@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSettings } from '../../context/SettingsContext'
+import { useSounds } from '../../context/SoundContext'
 import { generateQuestion, generateAnswers } from '../../utils/gameLogic'
 import AnswerButton from '../../components/AnswerButton/AnswerButton'
 import ProgressBar from '../../components/ProgressBar/ProgressBar'
@@ -28,11 +29,24 @@ function makeQuestion(difficulty: number): Question {
 
 export default function GameSession({ difficulty, onGameEnd }: Props) {
   const { t } = useSettings()
+  const { startBgMusic, playCorrect, playWrong, playLast10, muted, toggleMute } = useSounds()
   const [timeLeft, setTimeLeft] = useState(TOTAL_TIME)
+  const last10PlayedRef = useRef(false)
   const [correctCount, setCorrectCount] = useState(0)
   const [question, setQuestion] = useState<Question>(() => makeQuestion(difficulty))
   const [statuses, setStatuses] = useState<AnswerStatus[]>(['idle', 'idle', 'idle', 'idle'])
   const [disabled, setDisabled] = useState(false)
+
+  useEffect(() => {
+    startBgMusic('game')
+  }, [startBgMusic])
+
+  useEffect(() => {
+    if (timeLeft === 10 && !last10PlayedRef.current) {
+      playLast10()
+      last10PlayedRef.current = true
+    }
+  }, [timeLeft, playLast10])
 
   const nextQuestion = useCallback(() => {
     setQuestion(makeQuestion(difficulty))
@@ -68,10 +82,12 @@ export default function GameSession({ difficulty, onGameEnd }: Props) {
     setDisabled(true)
 
     if (isCorrect) {
+      playCorrect()
       setStatuses(question.answers.map((_, i) => (i === index ? 'correct' : 'idle')))
       setCorrectCount((c) => c + 1)
       setTimeout(nextQuestion, CORRECT_DELAY)
     } else {
+      playWrong()
       const correctIdx = question.answers.indexOf(correct)
       setStatuses(
         question.answers.map((_, i) => {
@@ -90,9 +106,14 @@ export default function GameSession({ difficulty, onGameEnd }: Props) {
         <ProgressBar timeLeft={timeLeft} totalTime={TOTAL_TIME} />
       </div>
 
-      <p className={styles.score}>
-        {t.currentScore}: <strong>{difficulty * correctCount}</strong>
-      </p>
+      <div className={styles.scoreRow}>
+        <p className={styles.score}>
+          {t.currentScore}: <strong>{difficulty * correctCount}</strong>
+        </p>
+        <button className={styles.muteBtn} onClick={toggleMute}>
+          {muted ? t.soundOff : t.soundOn}
+        </button>
+      </div>
 
       <div className={styles.question}>
         <span className={styles.number}>{question.a}</span>
