@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, addDoc, getDocs, Timestamp } from 'firebase/firestore'
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, Timestamp } from 'firebase/firestore'
 import type { GameResult } from '../types'
 
 const firebaseConfig = {
@@ -22,7 +22,8 @@ export async function saveResult(result: Omit<GameResult, 'id' | 'createdAt'>): 
 }
 
 export async function getResults(): Promise<GameResult[]> {
-  const snapshot = await getDocs(collection(db, 'results'))
+  const q = query(collection(db, 'results'), orderBy('score', 'desc'), limit(20))
+  const snapshot = await getDocs(q)
   return snapshot.docs.map((doc) => ({
     id: doc.id,
     name: doc.data().name as string,
