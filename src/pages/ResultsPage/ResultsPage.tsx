@@ -19,7 +19,7 @@ export default function ResultsPage() {
 
   useEffect(() => {
     getResults()
-      .then((data) => setResults(data.sort((a, b) => b.score - a.score)))
+      .then((data) => setResults(data))
       .finally(() => setLoading(false))
   }, [])
 
